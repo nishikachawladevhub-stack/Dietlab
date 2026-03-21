@@ -14,6 +14,8 @@ const DietLabPage = () => {
   const contactRef = useRef(null);
   const bentoSectionRef = useRef(null);
   const introSectionRef = useRef(null);
+  const whySectionRef = useRef(null);
+  const whyImageWrapRef = useRef(null);
   const [isVisible, setIsVisible] = useState({
     hero: false,
     about: false,
@@ -21,6 +23,7 @@ const DietLabPage = () => {
     contact: false,
     bento: false,
     intro: false,
+    why: false,
   });
 
   const [activeProgramId, setActiveProgramId] = useState(null);
@@ -149,8 +152,8 @@ const DietLabPage = () => {
   // Intersection Observer for scroll animations
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px',
+      threshold: 0.04,
+      rootMargin: '0px 0px -10px 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -188,6 +191,14 @@ const DietLabPage = () => {
     if (introSectionRef.current) {
       introSectionRef.current.setAttribute('data-section', 'intro');
       observer.observe(introSectionRef.current);
+    }
+    if (whySectionRef.current) {
+      whySectionRef.current.setAttribute('data-section', 'why');
+      observer.observe(whySectionRef.current);
+    }
+    if (whyImageWrapRef.current) {
+      whyImageWrapRef.current.setAttribute('data-section', 'why');
+      observer.observe(whyImageWrapRef.current);
     }
 
     // Hero section should be visible immediately
@@ -437,7 +448,7 @@ const DietLabPage = () => {
                 {/* Right: Small Image */}
                 <div className={styles.heroImageWrapper}>
                 <Image 
-                  src="/images/img%203.jpg" 
+                  src="/images/experience.jpg" 
                   alt="Diet Lab Nutrition" 
                     width={400}
                     height={400}
@@ -670,6 +681,54 @@ const DietLabPage = () => {
                 </p>
               </div>
               </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why It Works Section */}
+      <section ref={whySectionRef} className={styles.whySection}>
+        <div className={styles.whyContainer}>
+          <h2 className={styles.whyHeading}>Why It Works</h2>
+          <p className={styles.whySubtitle}>
+            Built for Real, Sustainable Results
+          </p>
+        </div>
+
+        <div ref={whyImageWrapRef} className={styles.whyImageWrap}>
+          <Image
+            src="/images/bghello.png"
+            alt="Weekly planner laptop"
+            width={1400}
+            height={900}
+            className={styles.whyImage}
+          />
+          <div className={styles.whyChipsLeft}>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Personalized Plans for Your Lifestyle
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Science-Backed Nutrition Strategy
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Sustainable Habits You Can Keep
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Ongoing Guidance and Accountability
+            </div>
+          </div>
+          <div className={styles.whyChipsRight}>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              No Extreme Dieting Required
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Built Around Your Routine
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Simple, Practical Meal Plans
+            </div>
+            <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
+              Long-Term Lifestyle Change
+            </div>
           </div>
         </div>
       </section>

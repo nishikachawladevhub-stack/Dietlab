@@ -338,7 +338,7 @@
 /* Right: Small Image Wrapper */
 .heroImageWrapper {
   flex: 0 0 auto;
-  border-radius: 12px;
+  border-radius: 180px 180px 16px 16px / 120px 120px 16px 16px;
   overflow: hidden;
   width: 320px;
   height: 480px;
@@ -825,6 +825,183 @@
   font-size: 17px;
   line-height: 1.75;
   font-weight: 500;
+}
+
+/* Why It Works Section */
+.whySection {
+  width: 100%;
+  background-color: #F2E4C4;
+  min-height: 110vh;
+  padding: 5rem 0rem 11rem;
+  margin-bottom: 6rem;
+}
+
+.whyContainer {
+  max-width:  1100px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  animation: whyFadeIn 0.7s ease both;
+}
+
+.whyHeading {
+  margin: 0 0 12px;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  color: #274773;
+}
+
+.whySubtitle {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: #227faa;
+}
+
+.whyChipsLeft,
+.whyChipsRight {
+  width: min(37%, 390px);
+  position: absolute;
+  transform: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 12px;
+  z-index: 2;
+}
+
+.whyChipsLeft {
+  left: 1%;
+  top: -2%;
+}
+
+.whyChipsRight {
+  right: 2%;
+  bottom: -16%;
+}
+
+.whyChip {
+  border-radius: 999px;
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  background: rgba(124, 206, 244, 0.3);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.4);
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.whyChipInView {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.whyChipInView:nth-child(1) { transition-delay: 0.16s; }
+.whyChipInView:nth-child(2) { transition-delay: 0.30s; }
+.whyChipInView:nth-child(3) { transition-delay: 0.44s; }
+.whyChipInView:nth-child(4) { transition-delay: 0.58s; }
+
+.whyChipInView:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.24);
+}
+
+.whyImageWrap {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.whyImage {
+  width: 120%;
+  max-width: 3200px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@keyframes whyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes whyChipFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .whyContainer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .whySection {
+    min-height: 80vh;
+    padding-top: 7rem;
+    padding-bottom: 8rem;
+    margin-bottom: 4rem;
+  }
+
+  .whyContainer {
+    padding: 0 0.5rem;
+  }
+
+  .whyHeading {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+
+  .whySubtitle {
+    font-size: clamp(1.05rem, 4.6vw, 1.25rem);
+  }
+
+  .whyChipsLeft {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 520px;
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    margin: 1.5rem auto 0;
+  }
+
+  .whyChipsRight {
+    display: none;
+  }
+
+  .whyChip {
+    padding: 13px 18px;
+    font-size: 0.96rem;
+  }
+
+  .whyImageWrap {
+    margin-top: 3rem;
+  }
 }
 
 /* Services Section */
@@ -1502,6 +1679,7 @@
   .heroImageWrapper {
     width: 100%;
     height: 200px;
+    border-radius: 120px 120px 14px 14px / 70px 70px 14px 14px;
   }
 
   .heroHighlights {
@@ -1572,7 +1750,7 @@
   .bentoSection {
     padding: 80px 20px;
     min-height: auto;
-    background-image: url('/images/experience_banner.png');
+    background-image: url('/images/bgh.png');
     background-position: center center;
   }
 

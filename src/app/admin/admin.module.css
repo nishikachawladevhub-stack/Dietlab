@@ -5,10 +5,10 @@
   background:
     linear-gradient(
       135deg,
-      rgba(214, 227, 223, 0.7),
-      rgba(215, 250, 250, 0.7)
+      rgba(214, 227, 223, 0.35),
+      rgba(215, 250, 250, 0.35)
     ),
-    url("/images/bg.jpg");
+    url("/images/admin.jpg");
 
   background-size: cover;
   background-position: center;

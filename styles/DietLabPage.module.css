@@ -1,0 +1,1753 @@
+/* Container */
+.container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.introSection {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  will-change: opacity, transform;
+}
+
+.introSection img {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  transition-delay: 0s;
+  will-change: opacity, transform;
+}
+
+.introInView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.introInView img {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+.stepperSection {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes introImageFadeIn {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Animation Classes */
+.fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    translate: 0 20px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Navigation Bar - Modern Full-Width Header for DietLab */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 80px;
+  /* Soft blue glass over background image */
+  background-color: rgba(114, 218, 232, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 16px rgba(15, 23, 42, 0.22);
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.navbarRecipes {
+  background-color: #AFE8E0;
+}
+
+.navbarBrand {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbarBrand:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.navbarLogo {
+  width: auto;
+  height: 70px;
+  object-fit: contain;
+}
+
+.navbarMenu {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.navItem {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-transform: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navItem:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.navItem:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.navItem:active {
+  color: #f0f0f0;
+  transform: translateY(0);
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.heroBgImage {
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero%20section%20bg%20image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(11px);
+  transform: scale(1.1);
+  animation: heroBgFloat 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(114, 218, 232, 0.3), rgba(114, 218, 232, 0.5));
+  z-index: 1;
+  opacity: 1;
+  animation: heroOverlayBreath 10s ease-in-out infinite;
+}
+
+@keyframes heroBgFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+}
+
+@keyframes heroOverlayBreath {
+  0% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.92;
+  }
+}
+
+/* Foreground Content Container */
+.heroForeground {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 20px 40px;
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Brand Block - Clean and Horizontal */
+.heroBrandWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  width: fit-content;
+  margin: 0 auto 48px;
+  padding: 0;
+  opacity: 0.88;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+
+.logoIcon {
+  /* width: auto;
+  height: 100px;
+  object-fit: contain; */
+  width: auto;
+  height: 85px;
+  object-fit: contain;
+
+
+}
+
+.logoText {
+  width: auto;
+  height: 85px;
+  object-fit: contain;
+}
+
+/* Combined White Box with Image, Content and Approach */
+.heroContentCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 680px;
+}
+
+/* Top Section: Image and Content Side by Side */
+.heroTopSection {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Left: Content Wrapper */
+.heroContentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+  min-height: 480px;
+  padding-top: 0;
+}
+
+/* Right: Small Image Wrapper */
+.heroImageWrapper {
+  flex: 0 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 320px;
+  height: 480px;
+  background-color: #f8fafc;
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+.heroLogoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.heroLogo {
+  width: auto;
+  height: 120px;
+  object-fit: contain;
+}
+
+.heroEyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: #72dae8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.heroHeading {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.8px;
+}
+
+.heroDescription {
+  font-size: 19px;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Right: Image Card */
+.heroImageCard {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  min-height: 75px;
+  background-color: #f8fafc;
+
+}
+
+.heroSideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: heroSideFloat 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes heroSideFloat {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Bottom Highlights Strip - Inside White Box */
+.heroHighlights {
+  width: 100%;
+  padding: 32px 0 0 0;
+  margin-top: 8px;
+  border-top: 1px solid rgba(114, 218, 232, 0.2);
+}
+
+.highlightsHeading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin: 0 0 28px 0;
+  letter-spacing: -0.5px;
+}
+
+.highlightsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  justify-items: center;
+  width: 100%;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.highlightIcon {
+  font-size: 36px;
+  line-height: 1;
+  filter: grayscale(20%) brightness(0.95);
+  opacity: 0.9;
+}
+
+.highlightText {
+  font-size: 15px;
+  font-weight: 400;
+  color: #475569;
+  letter-spacing: 0.2px;
+  line-height: 1.6;
+}
+
+.highlightText strong {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.primaryButton {
+  background-color: #72dae8;
+  color: #ffffff;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(114, 218, 232, 0.25);
+  transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.primaryButton:hover {
+  box-shadow: 0 6px 16px rgba(114, 218, 232, 0.35);
+  transform: translateY(-2px);
+  background-color: #5dd0e0;
+}
+
+.primaryButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(114, 218, 232, 0.25);
+}
+
+/* Areas We Specialize In - Chip Style */
+.specializationsTextWrapper {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.specializationsHeading {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.3px;
+}
+
+.specializationsChipsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.specializationChip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.specializationChip:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.chipIcon {
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) brightness(0);
+  color: #000000;
+  opacity: 0.9;
+}
+
+.chipText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e293b;
+  flex: 1;
+}
+
+/* About Section */
+.aboutSection {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(114, 218, 232, 0.1);
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #72dae8;
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+.sectionText {
+  font-size: 17px;
+  color: #475569;
+  line-height: 1.8;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Bento Grid Section */
+.bentoSection {
+  padding: 120px 20px;
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bentoBgLayer {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/experience_banner.png');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  will-change: transform;
+}
+
+.bentoDeco {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.bentoDeco1 {
+  width: 320px;
+  height: 320px;
+  background: rgba(117, 199, 212, 0.4);
+  top: 10%;
+  right: 15%;
+}
+
+.bentoDeco2 {
+  width: 240px;
+  height: 240px;
+  background: rgba(114, 218, 232, 0.35);
+  bottom: 20%;
+  right: 25%;
+}
+
+.bentoDeco3 {
+  width: 200px;
+  height: 200px;
+  background: rgba(114, 218, 232, 0.32);
+  top: 40%;
+  right: 5%;
+}
+
+.bentoContainer {
+  max-width: 1200px;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+}
+
+.bentoHeading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #000000;
+  text-align: left;
+  margin: 0 0 60px 0;
+  letter-spacing: -0.5px;
+  max-width: 700px;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 24px;
+  max-width: 700px;
+  margin-left: 0;
+}
+
+.bentoChip {
+  background-color: #75c7d4;
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 140px;
+  line-height: 1.6;
+  transform: translateY(0);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.bentoChip:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 38px rgba(0, 0, 0, 0.72);
+}
+
+.bentoChip:active {
+  transform: scale(0.97);
+}
+
+.bentoChipLarge {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  padding: 22px;
+  border-radius: 20px;
+  min-height: 220px;
+}
+
+.bentoChipContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bentoChipTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a2e35;
+  margin: 0;
+}
+
+.bentoChipDesc {
+  font-size: 15px;
+  color: #4f6f75;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bentoLargeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bentoLargeTitle {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1a2e35;
+  margin: 0;
+}
+
+.bentoLargeDesc {
+  font-size: 17px;
+  color: #4f6f75;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bentoChipMedium {
+  grid-column: 3;
+  grid-row: 1 / 2;
+  padding: 24px;
+}
+
+.bentoChipSmall {
+  grid-column: auto;
+  grid-row: auto;
+  padding: 20px;
+}
+
+.bentoChip:nth-child(2) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.bentoChip:nth-child(3) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.bentoChip:nth-child(4) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.bentoChip:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.bentoChip:nth-child(6) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.bentoChip:nth-child(7) {
+  grid-column: 1 / 4;
+  grid-row: 4;
+}
+
+.bentoChipIcon {
+  font-size: 26px;
+  margin-bottom: 12px;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.bentoChipLarge .bentoChipIcon {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.bentoChipText {
+  font-size: 14px;
+  color: #1e293b;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
+}
+
+.bentoChipLarge .bentoChipText {
+  font-size: 17px;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+/* Services Section */
+/* Our Programs Section */
+.programsSection {
+  padding: 80px 20px 90px 20px;
+  background-color: #F7FAF9;
+  background-image:
+    linear-gradient(to bottom right,
+      rgba(247, 250, 249, 0.65),
+      rgba(247, 250, 249, 0.7)),
+    url('/images/pro.jpeg');
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: normal;
+}
+
+
+
+.programsContainer {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.programsAtmosphere {
+  position: relative;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  align-items: flex-start;
+  overflow: visible;
+}
+
+.programsStackCol {
+  position: relative;
+  min-width: 0;
+}
+
+.programsStackCol .scrollStack {
+  margin-top: 0;
+}
+
+.programsStackCol .scrollStackTrack {
+  max-width: 100%;
+  margin: 0;
+}
+
+.programsHeading {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.programsIntro {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0 0 40px 0;
+}
+
+.scrollStack {
+  position: relative;
+  margin-top: 40px;
+}
+
+.scrollStackTrack {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 56px;
+}
+
+.scrollCard {
+  position: sticky;
+  top: 96px;
+  background-color: #98d8e0;
+  border-radius: 20px;
+  padding: 44px 44px 40px 44px;
+  border: 3px solid #49c4c8;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform-origin: center top;
+  transform: translateY(0) scale(0.97);
+  opacity: 0.9;
+  transition: box-shadow 0.26s ease, transform 0.26s ease, opacity 0.26s ease,
+    filter 0.26s ease;
+  filter: saturate(0.96) brightness(0.98);
+  min-height: 420px;
+}
+
+.scrollCard:not(:first-child) {
+  margin-top: -88px;
+}
+
+.scrollCardActive {
+  transform: translateY(-4px) scale(1.01);
+  opacity: 1;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.10);
+  filter: saturate(1) brightness(1);
+  z-index: 2;
+}
+
+.scrollCard:hover {
+  transform: translateY(-3px) scale(1);
+  opacity: 1;
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.12);
+  filter: saturate(0.99) brightness(1);
+}
+
+.scrollCardActive:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.12);
+}
+
+.programHeaderRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.programTitleBlock {
+  flex: 1;
+}
+
+.programTitle {
+  font-size: 24px;
+  font-weight: 650;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.programDescription {
+  font-size: 15px;
+  color: #475569;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.programHighlights {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: #334155;
+}
+
+.programHighlights li::before {
+  content: '•';
+  margin-right: 6px;
+  color: #72dae8;
+}
+
+.programActionsRow {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.programButton {
+  margin-top: 0;
+  align-self: flex-start;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.programButton:hover {
+  background-color: #020617;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+}
+
+.programCard:hover {
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+  transform: translateY(-4px);
+}
+
+.programIconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: rgba(15, 23, 42, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.programIcon {
+  font-size: 20px;
+  filter: grayscale(100%) brightness(0.1);
+  opacity: 0.9;
+}
+
+/* Program expanded details inside card */
+.programExpanded {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding-top: 0;
+  margin-top: 8px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.35s ease;
+}
+
+.programExpandedActive {
+  max-height: 600px;
+  opacity: 1;
+  padding-top: 16px;
+}
+
+.programExpandedSubtitle {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin: 0 0 4px 0;
+}
+
+.programExpandedText {
+  font-size: 15px;
+  color: #475569;
+  margin: 0 0 8px 0;
+  line-height: 1.6;
+}
+
+.programExpandedList {
+  margin: 0 0 8px 0;
+  padding-left: 18px;
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.programExpandedNote {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.programExpandedPrimaryButton {
+  margin-top: 16px;
+  padding: 11px 26px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #72dae8;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.programExpandedPrimaryButton:hover {
+  background-color: #5dd0e0;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(114, 218, 232, 0.35);
+}
+
+.servicesSection {
+  padding: 80px 20px;
+  background-color: #f8fafc;
+}
+
+.servicesSection .sectionTitle {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.servicesContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Recipes: 2-column card grid on desktop */
+.recipesGridWrapper .servicesContainer {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 32px;
+}
+
+.serviceCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Recipes: Pinterest-style cards */
+.recipesGridWrapper .serviceCard {
+  padding: 0;
+  overflow: hidden;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipesGridWrapper .recipeTags,
+.recipesGridWrapper .serviceCardTitle,
+.recipesGridWrapper .serviceCardText {
+  padding: 0 24px;
+}
+
+.recipesGridWrapper .recipeTags {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.recipesGridWrapper .serviceCardTitle {
+  margin-bottom: 8px;
+}
+
+.recipesGridWrapper .serviceCardText {
+  margin-bottom: 24px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.serviceCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.serviceCard:active {
+  transform: translateY(0);
+}
+
+.serviceCardTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+
+.serviceCardText {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.6;
+  font-weight: 400;
+  margin-top: auto;
+}
+
+/* Recipes Page Layout */
+.recipesPageWrapper {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(175,232,224,0.7),
+      rgba(238,243,245,0.7)
+    ),
+    url("/images/pro.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-attachment: fixed; 
+}
+
+.recipesPage {
+  min-height: 100vh;
+  padding: 80px 20px 120px;
+  width: 100%;
+}
+
+.recipesPageInner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.recipesHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.recipesTitle {
+  font-size: 42px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.recipesSubtitle {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+/* Two-column layout: sidebar + content */
+.recipesLayout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Left Sidebar */
+.recipesSidebar {
+  position: sticky;
+  top: 100px;
+  padding-top: 8px;
+}
+
+.recipesSidebarTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 24px;
+  letter-spacing: -0.3px;
+}
+
+.recipesFilterGroup {
+  margin-bottom: 24px;
+}
+
+.recipesFilterLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.recipesFilterSelect,
+.recipesFilterSearch {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recipesFilterSelect:focus,
+.recipesFilterSearch:focus {
+  border-color: #72dae8;
+  box-shadow: 0 0 0 3px rgba(114, 218, 232, 0.1);
+}
+
+/* Right Content Area */
+.recipesContent {
+  min-width: 0;
+}
+
+.recipesGridWrapper {
+  margin-top: 0;
+}
+
+.recipeCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.recipeCardImageWrapper {
+  width: 100%;
+  margin: 0;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  height: 280px;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #f3f4f6;
+}
+
+.recipeCardImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.serviceCard:hover .recipeCardImage {
+  transform: scale(1.05);
+}
+
+/* Recipe Tags - Above Title */
+.recipeTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.recipeTag {
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.recipeTag:not(:last-child)::after {
+  content: ',';
+  margin-left: 2px;
+  color: #6b7280;
+}
+
+/* Contact / CTA Section */
+.contactSection {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ctaCard {
+  background-color: #72dae8;
+  border-radius: 12px;
+  padding: 56px 40px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(114, 218, 232, 0.25);
+}
+
+.ctaTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.ctaText {
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.7;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+.ctaButton {
+  background-color: #ffffff;
+  color: #72dae8;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.ctaButton:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  background-color: #f8fafc;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .navbarMenu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .navbarBrand {
+    gap: 0;
+  }
+
+  .navbarLogoIcon {
+    height: 40px;
+    margin-right: -3px;
+  }
+
+  .navbarLogoText {
+    height: 40px;
+    margin-left: -3px;
+  }
+
+  .navItem {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  /* Hero Section Mobile */
+  .heroForeground {
+    padding: 60px 16px 40px;
+  }
+
+  .heroContainer {
+    gap: 32px;
+  }
+
+  /* Brand Wrapper - Keep Side-by-Side on Mobile */
+  .heroBrandWrapper {
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+
+  .logoIcon {
+    height: 80px;
+  }
+
+  .logoText {
+    max-height: 70px;
+  }
+
+  /* Combined White Box - Stack Image and Content on Mobile */
+  .heroContentCard {
+    flex-direction: column;
+    min-height: auto;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+
+  .heroTopSection {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .heroImageWrapper {
+    width: 100%;
+    height: 200px;
+  }
+
+  .heroHighlights {
+    padding-top: 20px;
+  }
+
+  .highlightsContainer {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+
+  .heroDescription {
+    font-size: 16px;
+  }
+
+  .primaryButton {
+    padding: 14px 32px;
+    font-size: 16px;
+  }
+
+  .heroHighlights {
+    padding: 32px 16px;
+  }
+
+  .highlightsContainer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .highlightIcon {
+    font-size: 28px;
+  }
+
+  .highlightText {
+    font-size: 15px;
+  }
+
+  .specializationsTextWrapper {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .specializationsHeading {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .specializationsChipsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .specializationChip {
+    padding: 10px 14px;
+  }
+
+  .chipIcon {
+    font-size: 18px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .chipText {
+    font-size: 18px;
+  }
+
+  .bentoSection {
+    padding: 80px 20px;
+    min-height: auto;
+    background-image: url('/images/experience_banner.png');
+    background-position: center center;
+  }
+
+  .bentoHeading {
+    font-size: 28px;
+    margin-bottom: 48px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .bentoChipLarge {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 28px;
+  }
+
+  .bentoChipMedium,
+  .bentoChipSmall {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .bentoChip:nth-child(2),
+  .bentoChip:nth-child(3),
+  .bentoChip:nth-child(4),
+  .bentoChip:nth-child(5),
+  .bentoChip:nth-child(6),
+  .bentoChip:nth-child(7) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  @media (max-width: 480px) {
+    .bentoSection {
+      padding: 60px 16px;
+    }
+
+    .bentoGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .bentoChipLarge,
+    .bentoChipMedium,
+    .bentoChipSmall {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+
+  .aboutSection,
+  .servicesSection,
+  .contactSection {
+    padding: 60px 20px;
+  }
+
+  .programsAtmosphere {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .scrollStackTrack {
+    max-width: 100%;
+    padding: 0 8px 40px 8px;
+  }
+
+  .scrollCard {
+    top: 84px;
+    padding: 28px 22px 26px 22px;
+    margin-top: 0;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+    min-height: 380px;
+    transform: translateY(0) scale(0.975);
+  }
+
+  .scrollCard:not(:first-child) {
+    margin-top: -56px;
+  }
+
+  .scrollCardActive {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 28px 64px rgba(15, 23, 42, 0.13);
+  }
+
+  .scrollCard:hover {
+    transform: translateY(-3px) scale(0.995);
+    box-shadow: 0 20px 48px rgba(15, 23, 42, 0.11);
+  }
+
+  .scrollCardActive:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+
+  .programHeaderRow {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .programTitle {
+    font-size: 20px;
+  }
+
+  .programDescription {
+    font-size: 14px;
+  }
+
+  .programHighlights {
+    font-size: 13px;
+  }
+
+  .programButton {
+    font-size: 13px;
+    padding: 9px 18px;
+  }
+
+  .sectionCard {
+    padding: 32px 24px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .sectionTitle::after {
+    width: 50px;
+    margin-top: 12px;
+  }
+
+  .servicesContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Recipes: 1 card per row on mobile */
+  .recipesGridWrapper .servicesContainer {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Recipes Layout: Stack sidebar and content on mobile */
+  .recipesLayout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .recipesSidebar {
+    position: static;
+    top: auto;
+    padding-top: 0;
+  }
+
+  .recipesSidebarTitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .serviceCard {
+    padding: 24px 20px;
+  }
+
+  .ctaCard {
+    padding: 40px 24px;
+  }
+
+  .ctaTitle {
+    font-size: 26px;
+  }
+
+  .ctaText {
+    font-size: 16px;
+  }
+}

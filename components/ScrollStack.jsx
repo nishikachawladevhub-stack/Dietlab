@@ -106,11 +106,14 @@ const ScrollStack = ({ programs, activeProgramId, toggleProgram }) => {
               </p>
 
               <button
-                className={styles.programExpandedPrimaryButton}
-                type="button"
-              >
-                Book Consultation
-              </button>
+  className={styles.programExpandedPrimaryButton}
+  type="button"
+  onClick={() => {
+    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+  }}
+>
+  Book Consultation
+</button>
             </div>
           </article>
         ))}

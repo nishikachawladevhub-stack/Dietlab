@@ -1,5 +1,6 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import styles from '../styles/DietLabPage.module.css';
 import ScrollStack from './ScrollStack';
@@ -11,11 +12,16 @@ const DietLabPage = () => {
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const recipesRef = useRef(null);
+  const programsSectionRef = useRef(null);
   const contactRef = useRef(null);
   const bentoSectionRef = useRef(null);
   const introSectionRef = useRef(null);
   const whySectionRef = useRef(null);
   const whyImageWrapRef = useRef(null);
+  const faqSectionRef = useRef(null);
+  const calendlySectionRef = useRef(null);
+  const calendlyContainerRef = useRef(null);
+  const calendlyInitRef = useRef(false);
   const [isVisible, setIsVisible] = useState({
     hero: false,
     about: false,
@@ -24,7 +30,59 @@ const DietLabPage = () => {
     bento: false,
     intro: false,
     why: false,
+    faq: false,
+    calendly: false,
   });
+
+  const CALENDLY_URL = 'https://calendly.com/dietlab-health/30min';
+
+  const initCalendly = useCallback(() => {
+    if (typeof window === 'undefined' || calendlyInitRef.current) return;
+    const el = calendlyContainerRef.current;
+    if (!el || !window.Calendly) return;
+    window.Calendly.initInlineWidget({
+      url: CALENDLY_URL,
+      parentElement: el,
+    });
+    calendlyInitRef.current = true;
+  }, []);
+
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
+  const faqItems = [
+    {
+      q: "How do you personalize each diet plan?",
+      a: "Every plan is built around your habits, food preferences, schedule, and health goals — not a generic template. It’s designed to fit your life, not disrupt it.",
+    },
+    {
+      q: "Do I need to follow strict rules or restrictions?",
+      a: "No strict rules here. The focus is on creating a balanced approach you can realistically maintain without feeling restricted.",
+    },
+    {
+      q: "What if I have a busy or unpredictable routine?",
+      a: "Your plan adapts to your routine — whether you’re working long hours, traveling, or managing a hectic schedule.",
+    },
+    {
+      q: "Will I get guidance along the way?",
+      a: "Yes, you’ll receive continuous support, regular check-ins, and adjustments to keep your progress steady and sustainable.",
+    },
+    {
+      q: "Is this approach suitable for beginners?",
+      a: "Absolutely. Whether you’re just starting or restarting your journey, the process is simple, guided, and easy to follow.",
+    },
+    {
+      q: "Can I still eat out or enjoy social events?",
+      a: "Of course. You’ll learn how to make smarter choices while still enjoying outings, without guilt or confusion.",
+    },
+    {
+      q: "How is progress measured?",
+      a: "Progress isn’t just about weight — it includes energy levels, consistency, habits, and overall well-being.",
+    },
+    {
+      q: "What makes this sustainable long-term?",
+      a: "The focus is on building habits that fit naturally into your life, so you don’t have to “restart” again and again.",
+    },
+  ];
 
   const [activeProgramId, setActiveProgramId] = useState(null);
   const [recipes, setRecipes] = useState([]);
@@ -200,6 +258,14 @@ const DietLabPage = () => {
       whyImageWrapRef.current.setAttribute('data-section', 'why');
       observer.observe(whyImageWrapRef.current);
     }
+    if (faqSectionRef.current) {
+      faqSectionRef.current.setAttribute('data-section', 'faq');
+      observer.observe(faqSectionRef.current);
+    }
+    if (calendlySectionRef.current) {
+      calendlySectionRef.current.setAttribute('data-section', 'calendly');
+      observer.observe(calendlySectionRef.current);
+    }
 
     // Hero section should be visible immediately
     setIsVisible((prev) => ({ ...prev, hero: true }));
@@ -208,6 +274,17 @@ const DietLabPage = () => {
       observer.disconnect();
     };
   }, []);
+
+  // Calendly: init when script is cached; Script onLoad handles first load
+  useEffect(() => {
+    initCalendly();
+    return () => {
+      calendlyInitRef.current = false;
+      if (calendlyContainerRef.current) {
+        calendlyContainerRef.current.innerHTML = '';
+      }
+    };
+  }, [initCalendly]);
 
   // Fetch recipes from Sanity (for Recipes section) using shared helper
   useEffect(() => {
@@ -439,7 +516,9 @@ const DietLabPage = () => {
                 
                 <button
                   className={styles.primaryButton}
-                  onClick={() => scrollToSection(contactRef)}
+                  onClick={() => {
+                    document.getElementById("programs-section")?.scrollIntoView({ behavior: "smooth" });
+                  }}
                 >
                   See Plans
                 </button>
@@ -461,75 +540,8 @@ const DietLabPage = () => {
 
               </div>
             </div>
-
-              <div className="stepperSection">
-              {/* Bottom Section: Our Approach */}
-              <div style={{ margin: "120px 0" }}>
-                <div data-stepper-name={name}>
-                  <Stepper
-                    initialStep={1}
-                    onStepChange={(step) => {
-                      setName(String(step));
-                      console.log(step);
-                    }}
-                    onFinalStepCompleted={() => {
-                      setName("Done");
-                      console.log("Done");
-                    }}
-                    backButtonText="Back"
-                    nextButtonText="Next"
-                  >
-                    <Step>
-                      <h2>OUR APPROACH</h2>
-                      <p>Here’s how DietLab helps you achieve your health goals step by step.</p>
-                    </Step>
-
-                    <Step>
-                      <h2>Consultation</h2>
-                      <p>We understand your lifestyle, body, and goals before starting.</p>
-                    </Step>
-
-                    <Step>
-                      <h2>Personalized Plan</h2>
-                      <p>A custom nutrition plan designed only for you.</p>
-                    </Step>
-
-                  <Step>
-                      <h2>Tracking & Reviews</h2>
-                      <p>We track your progress and refine your plan so you stay consistent and on course.</p>
-                  </Step>
-                  </Stepper>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
-
-      {/* Our Programs Section */}
-      <section className={styles.programsSection}>
-        <div className={styles.programsContainer}>
-          <h2 className={styles.programsHeading}>Our Programs</h2>
-          <p className={styles.programsIntro}>
-            Four focused nutrition paths to meet you where you are — each built to be practical, personal, and sustainable.
-          </p>
-          <div className={styles.programsAtmosphere}>
-            <div className={styles.programsStackCol}>
-              <ScrollStack
-                programs={programsLeft}
-                activeProgramId={activeProgramId}
-                toggleProgram={toggleProgram}
-              />
-            </div>
-            <div className={styles.programsStackCol}>
-              <ScrollStack
-                programs={programsRight}
-                activeProgramId={activeProgramId}
-                toggleProgram={toggleProgram}
-              />
-            </div>
-          </div>
-                </div>
       </section>
 
       {/* Bento Grid Section */}
@@ -685,6 +697,105 @@ const DietLabPage = () => {
         </div>
       </section>
 
+      {/* Tip: Our Approach (Stepper) */}
+      <div className="stepperSection">
+        <div style={{ margin: "120px 0" }}>
+          <div data-stepper-name={name}>
+            <Stepper
+              initialStep={1}
+              onStepChange={(step) => {
+                setName(String(step));
+                console.log(step);
+              }}
+              onFinalStepCompleted={() => {
+                setName("Done");
+                console.log("Done");
+              }}
+              backButtonText="Back"
+              nextButtonText="Next"
+            >
+              <Step
+                image="/images/step.jpg"
+                imageAlt="DietLab nutrition approach overview"
+              >
+                <h2>OUR APPROACH</h2>
+                <p>Here’s how DietLab helps you achieve your health goals step by step.</p>
+              </Step>
+
+              <Step
+                image="/images/women.jpg"
+                imageAlt="Personal consultation and lifestyle review"
+              >
+                <h2>Consultation</h2>
+                <p>We understand your lifestyle, body, and goals before starting.</p>
+              </Step>
+
+              <Step
+                image="/images/meal_plan.jpg"
+                imageAlt="Personalized meal planning"
+              >
+                <h2>Personalized Plan</h2>
+                <p>A custom nutrition plan designed only for you.</p>
+              </Step>
+
+              <Step
+                image="/images/review.jpg"
+                imageAlt="Tracking progress and reviews"
+              >
+                <h2>Tracking & Reviews</h2>
+                <p>We track your progress and refine your plan so you stay consistent and on course.</p>
+              </Step>
+            </Stepper>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Programs Section */}
+      <section
+        id="programs-section"
+        ref={programsSectionRef}
+        className={styles.programsSection}
+      >
+        <div className={styles.programsContainer}>
+          <h2 className={styles.programsHeading}>Our Programs</h2>
+          <p className={styles.programsIntro}>
+            Four focused nutrition paths to meet you where you are — each built to be practical, personal, and sustainable.
+          </p>
+          <div className={styles.programsAtmosphere}>
+            <div className={styles.programsStackCol}>
+              <ScrollStack
+                programs={programsLeft}
+                activeProgramId={activeProgramId}
+                toggleProgram={toggleProgram}
+              />
+            </div>
+            <div className={styles.programsStackCol}>
+              <ScrollStack
+                programs={programsRight}
+                activeProgramId={activeProgramId}
+                toggleProgram={toggleProgram}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Recipes Section */}
+      <section
+        ref={recipesRef}
+        className={`${styles.servicesSection} ${styles.homeRecipesSection} ${isVisible.recipes ? styles.fadeInUp : ''}`}
+      >
+        <h1 className={styles.sectionTitle}>Our Recipes</h1>
+        <div className={styles.servicesContainer}>
+          {(recipes.length > 0 ? recipes : fallbackRecipes).map((recipe) => (
+            <div className={styles.serviceCard} key={recipe._id || recipe.id}>
+              <h3 className={styles.serviceCardTitle}>{recipe.title}</h3>
+              <p className={styles.serviceCardText}>{recipe.description}</p>
+          </div>
+          ))}
+        </div>
+      </section>
+
       {/* Why It Works Section */}
       <section ref={whySectionRef} className={styles.whySection}>
         <div className={styles.whyContainer}>
@@ -752,38 +863,254 @@ const DietLabPage = () => {
         </div>
       </section>
 
-      {/* Recipes Section */}
+      {/* Book consultation — Calendly */}
       <section
-        ref={recipesRef}
-        className={`${styles.servicesSection} ${isVisible.recipes ? styles.fadeInUp : ''}`}
+        id="booking"
+        ref={calendlySectionRef}
+        className={`${styles.calendlySection} ${
+          isVisible.calendly ? styles.fadeInUp : ''
+        }`}
       >
-        <h2 className={styles.sectionTitle}>Our Recipes</h2>
-        <div className={styles.servicesContainer}>
-          {(recipes.length > 0 ? recipes : fallbackRecipes).map((recipe) => (
-            <div className={styles.serviceCard} key={recipe._id || recipe.id}>
-              <h3 className={styles.serviceCardTitle}>{recipe.title}</h3>
-              <p className={styles.serviceCardText}>{recipe.description}</p>
-          </div>
-          ))}
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="lazyOnload"
+          onLoad={initCalendly}
+        />
+        <h2 className={styles.calendlyHeading}>Book Your Free Consultation</h2>
+        <div className={styles.calendlyCard}>
+          <div
+            ref={calendlyContainerRef}
+            className={styles.calendlyEmbed}
+            aria-label="Schedule a meeting on Calendly"
+          />
         </div>
       </section>
 
-      {/* Contact / CTA Section */}
+      {/* FAQ Section */}
       <section
-        id="contact-section"
-        ref={contactRef}
-        className={`${styles.contactSection} ${isVisible.contact ? styles.fadeInUp : ''}`}
+        id="faq-section"
+        ref={faqSectionRef}
+        className={`${styles.faqSection} ${isVisible.faq ? styles.fadeInUp : ""}`}
       >
-        <div className={styles.ctaCard}>
-          <h2 className={styles.ctaTitle}>Ready to Start Your Journey?</h2>
-          <p className={styles.ctaText}>
-            Take the first step towards a healthier you. Book your
-            consultation today and receive personalized nutrition guidance
-            tailored to your needs.
+        <div className={styles.faqInner}>
+          <div
+            className={`${styles.faqHeadingBlock} ${
+              isVisible.faq ? styles.faqHeadingInView : ""
+            }`}
+          >
+            <h2 className={styles.faqHeading}>Frequently Asked Questions</h2>
+          </div>
+          <p className={styles.faqIntro}>
+            Straight answers about how DietLab plans work for real life.
           </p>
-          <button className={styles.ctaButton}>Get Started</button>
+
+          <div className={styles.faqList}>
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div
+                  key={item.q}
+                  className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ""}`}
+                >
+                  <button
+                    type="button"
+                    className={styles.faqQuestionBtn}
+                    onClick={() =>
+                      setOpenFaqIndex((prev) => (prev === index ? null : index))
+                    }
+                    aria-expanded={isOpen}
+                  >
+                    <span className={styles.faqQuestionText}>{item.q}</span>
+                    <span className={styles.faqChevron} aria-hidden>
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+                  <div
+                    className={styles.faqAnswer}
+                    hidden={!isOpen}
+                  >
+                    <p>{item.a}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={styles.faqFooter}>
+            <p className={styles.faqClosing}>
+              💡 Not sure where to start? Let’s figure it out together.
+            </p>
+            <button
+  type="button"
+  className={styles.faqCtaButton}
+  onClick={() => {
+    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+  }}
+>
+  👉 Get Started
+</button>
+          </div>
         </div>
       </section>
+
+      <button className={styles.bookBtn} onClick={() => {
+  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+}}>
+  Start with a Free Consultation
+</button>
+
+      {/* Site footer — replaces previous CTA block */}
+      <footer
+        id="contact-section"
+        ref={contactRef}
+        className={`${styles.siteFooter} ${isVisible.contact ? styles.fadeInUp : ''}`}
+      >
+        <div className={styles.footerTop}>
+          <div className={styles.footerBrand}>
+            <Image
+              src="/images/diet_lab-navbar-logo(1).png"
+              alt="DietLab"
+              width={260}
+              height={65}
+              className={styles.footerLogo}
+              unoptimized
+            />
+            <p className={styles.footerBio}>
+              Personalized nutrition plans and online consultations — built around
+              your lifestyle so you can stay consistent and feel your best.
+            </p>
+            <div className={styles.footerSocial} aria-label="Social links">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
+                aria-label="X (Twitter)"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
+                aria-label="Instagram"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
+                aria-label="LinkedIn"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
+                aria-label="Facebook"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <nav className={styles.footerNav} aria-label="Footer">
+            <div className={styles.footerNavCol}>
+              <span className={styles.footerNavHeading}>Explore</span>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => router.push('/recipes')}
+              >
+                Healthy recipes
+              </button>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(aboutRef)}
+              >
+                About
+              </button>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(programsSectionRef)}
+              >
+                Programs
+              </button>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(bentoSectionRef)}
+              >
+                What you&apos;ll experience
+              </button>
+            </div>
+            <div className={styles.footerNavCol}>
+              <span className={styles.footerNavHeading}>Learn</span>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(whySectionRef)}
+              >
+                Why it works
+              </button>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(faqSectionRef)}
+              >
+                FAQs
+              </button>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => router.push('/recipes')}
+              >
+                Recipe ideas
+              </button>
+            </div>
+            <div className={styles.footerNavCol}>
+              <span className={styles.footerNavHeading}>Connect</span>
+              <button
+                type="button"
+                className={styles.footerLink}
+                onClick={() => scrollToSection(contactRef)}
+              >
+                Contact
+              </button>
+              <button
+                type="button"
+                className={`${styles.footerLink} ${styles.footerLinkAccent}`}
+                onClick={() => scrollToSection(contactRef)}
+              >
+                Book consultation
+              </button>
+            </div>
+          </nav>
+        </div>
+
+        <div className={styles.footerSub}>
+          <p className={styles.footerLegal}>
+            <span>Privacy &amp; terms</span>
+            <span className={styles.footerLegalSep}>|</span>
+            <span>DietLab — personalized nutrition</span>
+          </p>
+        </div>
+      </footer>
 
     </div>
   );

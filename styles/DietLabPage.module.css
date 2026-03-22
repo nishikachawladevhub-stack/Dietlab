@@ -43,9 +43,13 @@
   margin: 100px auto;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+
+  background: rgba(102, 236, 240, 0.35); /* softer */
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* subtle */
 }
 
 @keyframes introFadeIn {
@@ -93,7 +97,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 80px;
+  padding: 13px 60px;
   /* Soft blue glass over background image */
   background-color: rgba(114, 218, 232, 0.8);
   backdrop-filter: blur(12px);
@@ -608,6 +612,8 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 
 .bentoBgLayer {
@@ -891,7 +897,7 @@
   color: #1f2937;
   background: rgba(124, 206, 244, 0.3);
   border: 1px solid rgba(31, 41, 55, 0.08);
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.4);
+  box-shadow: 0 12px 26px rgba(124, 206, 244, 0.3);
   opacity: 0;
   transform: translateY(22px) scale(0.985);
   transition:
@@ -1089,7 +1095,7 @@
   padding: 44px 44px 40px 44px;
   border: 3px solid #49c4c8;
   box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1128,7 +1134,7 @@
 
 .programHeaderRow {
   display: flex;
-  gap: 16px;
+  gap: 3px;
   align-items: flex-start;
 }
 
@@ -1137,15 +1143,15 @@
 }
 
 .programTitle {
-  font-size: 24px;
+  font-size: 27px;
   font-weight: 650;
   color: #0f172a;
   margin: 0 0 4px 0;
 }
 
 .programDescription {
-  font-size: 15px;
-  color: #475569;
+  font-size: 19px;
+  color: #2e4b75;
   margin: 0;
   line-height: 1.7;
 }
@@ -1157,8 +1163,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 14px;
-  color: #334155;
+  font-size: 18px;
+  color: #1d3352;
 }
 
 .programHighlights li::before {
@@ -1209,7 +1215,7 @@
 }
 
 .programIcon {
-  font-size: 20px;
+  font-size: 18px;
   filter: grayscale(100%) brightness(0.1);
   opacity: 0.9;
 }
@@ -1241,8 +1247,9 @@
 }
 
 .programExpandedText {
-  font-size: 15px;
-  color: #475569;
+  font-size: 20px;
+  font-weight: 400;
+  color: #324a6b;
   margin: 0 0 8px 0;
   line-height: 1.6;
 }
@@ -1257,7 +1264,7 @@
 
 .programExpandedNote {
   margin: 8px 0 0 0;
-  font-size: 14px;
+  font-size: 18px;
   color: #64748b;
 }
 
@@ -1268,7 +1275,7 @@
   border: none;
   background-color: #72dae8;
   color: #0f172a;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -1283,6 +1290,23 @@
 .servicesSection {
   padding: 80px 20px;
   background-color: #f8fafc;
+}
+
+/* Home page — Our Recipes section background only */
+.homeRecipesSection {
+  background-color: #f8fafc;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(248, 250, 252, 0.6),
+      rgba(248, 250, 252, 0.6)
+    ),
+    url("/images/admin.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 7rem;
+  margin-bottom: 7rem;
 }
 
 .servicesSection .sectionTitle {
@@ -1383,10 +1407,10 @@
   background:
     linear-gradient(
       to bottom,
-      rgba(175,232,224,0.7),
-      rgba(238,243,245,0.7)
+      rgba(168, 218, 211, 0.3),
+      rgba(238,243,245,0.3)
     ),
-    url("/images/pro.jpeg");
+    url("/images/prog.jpg");
 
   background-size: cover;
   background-position: center;
@@ -1547,64 +1571,388 @@
   color: #6b7280;
 }
 
-/* Contact / CTA Section */
-.contactSection {
+
+.bookBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 22px 26px;
+  background: #123875;
+  color: white;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  font-size: 16px;   /* bigger */
+  font-weight: 600;  /* bold */
+}
+
+.bookBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Site footer (blue theme — replaces old contact CTA card) */
+.siteFooter {
+  position: relative;
+  margin-top: 0;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    165deg,
+    #61C6F0 0%,
+    #5EB4D9 38%,
+    #74D9F7 72%,
+    #61C6F0 100%
+  );
+  color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.footerTop {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.85fr);
+  gap: 48px 32px;
+  align-items: start;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footerLogo {
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  object-fit: contain;
+  /* Keeps brand colors; add drop-shadow for contrast on blue if needed */
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.25));
+}
+
+.footerBio {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(248, 250, 252, 0.88);
+  max-width: 340px;
+}
+
+.footerSocial {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerSocialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.footerSocialBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.footerNav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+.footerNavCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerNavHeading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.65);
+  margin-bottom: 4px;
+}
+
+.footerLink {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  text-decoration: underline transparent;
+  text-underline-offset: 4px;
+}
+
+.footerLink:hover {
+  color: #bae6fd;
+  text-decoration-color: rgba(186, 230, 253, 0.7);
+}
+
+.footerLinkAccent {
+  color: #7dd3fc;
+}
+
+.footerSub {
+  background: #0a0f1a;
+  padding: 16px 24px 20px;
+  text-align: center;
+}
+
+.footerLegal {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.footerLegalSep {
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+  .footerTop {
+    grid-template-columns: 1fr;
+    padding: 44px 20px 32px;
+    gap: 36px;
+  }
+
+  .footerNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .footerNav {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Book consultation — Calendly (before FAQ) */
+.calendlySection {
   padding: 80px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.ctaCard {
-  background-color: #72dae8;
-  border-radius: 12px;
-  padding: 56px 40px;
+.calendlyHeading {
   text-align: center;
-  box-shadow: 0 8px 24px rgba(114, 218, 232, 0.25);
-}
-
-.ctaTitle {
   font-size: 32px;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 20px;
-  text-align: center;
+  color: #20498b;
+  margin: 0 auto 28px;
   letter-spacing: -0.5px;
   line-height: 1.3;
 }
 
-.ctaText {
-  font-size: 18px;
-  color: #ffffff;
+.calendlyCard {
+  background: #3c6fc1;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(114, 218, 232, 0.1);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.calendlyEmbed {
+  width: 100%;
+  min-height: 650px;
+  height: 650px;
+}
+
+@media (max-width: 640px) {
+  .calendlyEmbed {
+    min-height: 560px;
+    height: min(620px, 85vh);
+  }
+}
+
+/* FAQ Section */
+.faqSection {
+  padding: 80px 20px 96px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.faqInner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faqHeadingBlock {
   text-align: center;
-  margin-bottom: 32px;
-  line-height: 1.7;
-  opacity: 0.95;
+  margin-bottom: 0;
+}
+
+.faqHeading {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+}
+
+.faqHeadingBlock .faqHeading::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 4px;
+  background-color: #72dae8;
+  margin: 18px auto 0;
+  border-radius: 2px;
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faqHeadingInView .faqHeading::after {
+  width: 120px;
+}
+
+.faqIntro {
+  margin: 0 0 40px;
+  font-size: 18px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.65;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faqItem {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(114, 218, 232, 0.2);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.faqItemOpen {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  border-color: rgba(114, 218, 232, 0.45);
+}
+
+.faqQuestionBtn {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.faqQuestionText {
+  font-size: 19px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.faqChevron {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(114, 218, 232, 0.15);
+  color: #0f766e;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.faqAnswer {
+  padding: 0 20px 18px;
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.faqAnswer p {
+  margin: 14px 0 0;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #475569;
   font-weight: 400;
 }
 
-.ctaButton {
-  background-color: #ffffff;
-  color: #72dae8;
-  padding: 16px 40px;
+.faqFooter {
+  margin-top: 40px;
+  padding: 28px 24px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(114, 218, 232, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.faqClosing {
+  margin: 0 0 20px;
+  font-size: 19px;
+  color: #334155;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.faqCtaButton {
+  background-color: #117582;
+  color: #ffffff;
+  padding: 14px 36px;
   border: none;
   border-radius: 8px;
   font-size: 17px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(114, 218, 232, 0.45);
+  transition: box-shadow 0.25s ease, transform 0.2s ease, background-color 0.2s ease;
   letter-spacing: 0.3px;
 }
 
-.ctaButton:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.faqCtaButton:hover {
+  background-color: #5ec8d8;
+  box-shadow: 0 6px 18px rgba(114, 218, 232, 0.55);
   transform: translateY(-2px);
-  background-color: #f8fafc;
 }
 
-.ctaButton:active {
+.faqCtaButton:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
@@ -1809,8 +2157,35 @@
 
   .aboutSection,
   .servicesSection,
-  .contactSection {
+  .contactSection,
+  .calendlySection,
+  .faqSection {
     padding: 60px 20px;
+  }
+
+  .homeRecipesSection {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .faqHeading {
+    font-size: 30px;
+  }
+
+  .faqIntro {
+    font-size: 16px;
+  }
+
+  .faqQuestionText {
+    font-size: 19px;
+  }
+
+  .faqAnswer p {
+    font-size: 18px;
+  }
+
+  .faqClosing {
+    font-size: 17px;
   }
 
   .programsAtmosphere {
@@ -1917,15 +2292,4 @@
     padding: 24px 20px;
   }
 
-  .ctaCard {
-    padding: 40px 24px;
-  }
-
-  .ctaTitle {
-    font-size: 26px;
-  }
-
-  .ctaText {
-    font-size: 16px;
-  }
 }

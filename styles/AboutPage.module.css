@@ -1,0 +1,348 @@
+/* About route — premium minimal layout (sage panel + overlapping image) */
+
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+}
+
+.main {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+
+/* Hero: sage block + overlap */
+.hero {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+  margin-top: 90px;
+}
+
+.heroVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroGrid {
+  /* display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: stretch;
+  gap: 0; */
+  position: relative;
+}
+
+/* .sageBlock {
+  background: linear-gradient(
+    145deg,
+    #a8b89e 0%,
+    #b9c9ae 48%,
+    #c5d4bc 100%
+  );
+  width: 70%;
+  height: 100%;
+  border-radius: 28px;
+  padding: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 56px);
+  /* min-height: min(420px, 90vh); */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 24px 60px rgba(45, 62, 42, 0.12);
+  z-index: 1;
+} */ 
+
+.sageBlock {
+  /* background: linear-gradient(
+    145deg,
+    hsl(167, 74%, 70%) 0%,
+    #4ac6b3 48%,
+    #38a0a9 100%
+  ); */
+  /* background-color: rgb(117, 203, 224); */
+  /* background-color: rgb(94, 212, 204); */
+  background-color: rgba(74, 170, 185, 0.2);
+
+  width: 85%;              /* FIX: full width */
+  min-height: 650px;        /* FIX: makes it big */
+
+  border-radius: 32px;
+  padding: 100px 80px;      /* more premium spacing */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-shadow: 0 24px 60px rgba(45, 62, 42, 0.52);
+  position: relative;       /* IMPORTANT for overlap */
+  z-index: 1;
+} 
+
+
+.kicker {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(82, 114, 161, 0.92);
+}
+
+.headline {
+  margin: 0 0 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.85rem, 3.6vw, 2.65rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0a3992;
+  max-width: 22ch;
+}
+
+/* Body copy block: width + rhythm only (structure unchanged) */
+.lede {
+  margin: 0 0 28px;
+  max-width: min(500px, 100%);
+  text-align: left;
+  /* color: #324f8e; */
+  /* color: #264da2; */
+  color: #1643a3;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.lede p {
+  margin: 0 0 14px;
+  font-size: 18px; /* was 16px — tweak here (e.g. 17px / 19px) */
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.lede p:last-child {
+  margin-bottom: 0;
+}
+
+.imageColumn {
+  position: relative;
+  min-height: 280px;
+  z-index: 2;
+}
+
+.imageFrame {
+  position: absolute;
+  right: -4px;
+  top: -350px;
+  transform: translateY(-50%);
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+  max-height: min(520px, 75vh);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px rgba(15, 23, 42, 0.45),   /* main depth */
+    0 10px 30px rgba(15, 23, 42, 0.22),   /* soft lift */
+    0 0 0 1px rgba(255, 255, 255, 0.4);   /* subtle border */
+}
+
+.imageFrame img {
+  object-fit: cover;
+}
+
+/* Staggered children inside hero */
+.heroVisible .kicker {
+  animation: aboutFadeUp 0.7s ease 0.05s both;
+}
+
+.heroVisible .headline {
+  animation: aboutFadeUp 0.75s ease 0.12s both;
+}
+
+.heroVisible .lede {
+  animation: aboutFadeUp 0.75s ease 0.2s both;
+}
+
+@keyframes aboutFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The Story of DietLab — two columns, neutral, scroll fade */
+.storySection {
+  margin-top: clamp(56px, 7vw, 96px);
+  padding: clamp(40px, 5vw, 64px) clamp(20px, 3vw, 32px);
+  background:  rgba(167, 239, 230, 0.4);
+  border-radius: 28px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.storyVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.storyInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.storyTextCol {
+  text-align: left;
+}
+
+.storyEyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.storyHeading {
+  margin: 0 0 22px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.storyBody p {
+  margin: 0 0 16px;
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.78;
+  color: #475569;
+  font-weight: 400;
+}
+
+.storyBody p:last-child {
+  margin-bottom: 0;
+}
+
+.storyLogoCol {
+  display: flex;
+  justify-content: center;
+}
+
+.storyLogoCard {
+  width: 100%;
+  max-width: 340px;
+  padding: clamp(36px, 5vw, 48px) clamp(28px, 4vw, 40px);
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(15, 23, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.storyLogoImg {
+  width: 100%;
+  height: auto;
+  max-width: 260px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .storyInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .storyLogoCard {
+    margin: 0 auto;
+  }
+}
+
+/* Lower section — scroll fade */
+.lower {
+  margin-top: clamp(72px, 10vw, 120px);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.lowerVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lowerTitle {
+  margin: 0 0 14px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.lowerText {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
+@media (max-width: 960px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .imageColumn {
+    min-height: 0;
+    order: -1;
+  }
+
+  .imageFrame {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+    max-height: none;
+  }
+
+  .sageBlock {
+    min-height: auto;
+  }
+}
+
+
+.pageHeader {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pageTitle {
+  font-size: 42px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  color: #0f172a;
+  margin-bottom: 40px;
+}

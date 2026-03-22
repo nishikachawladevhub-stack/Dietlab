@@ -1410,7 +1410,7 @@
       rgba(168, 218, 211, 0.3),
       rgba(238,243,245,0.3)
     ),
-    url("/images/prog.jpg");
+    url("/images/pro.jpeg");
 
   background-size: cover;
   background-position: center;
@@ -1577,7 +1577,7 @@
   bottom: 20px;
   right: 20px;
   padding: 22px 26px;
-  background: #123875;
+  background: #092a5f;
   color: white;
   border-radius: 999px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);

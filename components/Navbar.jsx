@@ -43,16 +43,10 @@ const Navbar = () => {
         <button
           className={styles.navItem}
           onClick={() => {
-            if (router.pathname === '/') {
-              // On home page, scroll to about section
-              const aboutSection = document.getElementById('about-section');
-              if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                router.push('/#about');
-              }
+            if (router.pathname !== '/about') {
+              router.push('/about');
             } else {
-              router.push('/#about');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >

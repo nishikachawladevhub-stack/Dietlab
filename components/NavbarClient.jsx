@@ -42,15 +42,10 @@ const NavbarClient = () => {
         <button
           className={styles.navItem}
           onClick={() => {
-            if (pathname === '/') {
-              const aboutSection = document.getElementById('about-section');
-              if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                router.push('/#about');
-              }
+            if (pathname !== '/about') {
+              router.push('/about');
             } else {
-              router.push('/#about');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >

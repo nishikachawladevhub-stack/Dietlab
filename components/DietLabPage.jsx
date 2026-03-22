@@ -387,8 +387,9 @@ const DietLabPage = () => {
             Home
           </button>
           <button
+            type="button"
             className={styles.navItem}
-            onClick={() => scrollToSection(aboutRef)}
+            onClick={() => router.push('/about')}
           >
             About
           </button>

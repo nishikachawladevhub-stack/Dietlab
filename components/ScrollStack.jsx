@@ -101,7 +101,7 @@ const ScrollStack = ({ programs, activeProgramId, toggleProgram }) => {
               <p className={styles.programExpandedText}>{program.duration}</p>
 
               <p className={styles.programExpandedNote}>
-                Medical nutrition support is also available for other health
+               Clinical nutrition support is also available for other health
                 conditions as needed.
               </p>
 

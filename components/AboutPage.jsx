@@ -96,6 +96,9 @@ export default function AboutPage() {
               <h1 id="about-hero-heading" className={styles.headline}>
                 Hi, I’m Priya
               </h1>
+              <h4 className={styles.degree}>
+  Postgraduate Diploma in Nutrition & Dietetics (PGDN)
+</h4>
               <div className={styles.lede}>
                 <p>
                   I&apos;m a nutritionist based in Greater Noida, working with
@@ -105,12 +108,12 @@ export default function AboutPage() {
                 <p>
                   Being a merchant navy wife, I&apos;ve experienced firsthand how
                   unpredictable routines, travel, and lifestyle shifts can impact
-                  health. This shaped my approach — one that blends practical
+                  health. This shaped my approach, one that blends practical
                   nutrition with flexibility, rather than rigid diet rules.
                 </p>
                 <p>
                   I believe nutrition should feel natural, adaptable, and tailored
-                  to your life — not restrictive. Every plan I create is designed
+                  to your life, not restrictive. Every plan I create is designed
                   around your schedule, preferences, and goals, whether you&apos;re
                   at home or navigating a demanding lifestyle. My focus is simple:
                   helping you build habits that last, so you can feel your best —
@@ -122,7 +125,7 @@ export default function AboutPage() {
             <div className={styles.imageColumn} aria-hidden="true">
               <div className={styles.imageFrame}>
                 <Image
-                  src="/images/priya1.jpeg"
+                  src="/images/priya.jpeg"
                   alt="Welcoming, healthy lifestyle"
                   fill
                   sizes="(max-width: 960px) 90vw, 420px"
@@ -149,7 +152,7 @@ export default function AboutPage() {
               </h2>
               <div className={styles.storyBody}>
                 <p>
-                  DietLab began from something deeply personal — navigating health,
+                  DietLab began from something deeply personal navigating health,
                   routine, and a lifestyle that rarely stays still. Those everyday
                   challenges with nutrition made it clear how hard it can be to find
                   guidance that actually matches real life.
@@ -202,14 +205,14 @@ export default function AboutPage() {
               </h2>
               <p className={styles.blogIntro}>
                 I write on Medium about nutrition habits, realistic meal planning,
-                and the small shifts that make health sustainable — less noise,
+                and the small shifts that make health sustainable meaning less noise,
                 more clarity. It&apos;s about finding a steady rhythm with food and
                 lifestyle, instead of chasing extremes.
               </p>
               <p className={styles.blogIntro}>
                 Like navigating with a quiet compass, I focus on choices that keep
-                you grounded — simple, consistent, and actually doable in real life.
-                No overwhelm, no rigid rules — just a calmer, more intentional way
+                you grounded, simple, consistent, and actually doable in real life.
+                No overwhelm, no rigid rules, just a calmer, more intentional way
                 to stay on course.
               </p>
               <p className={styles.blogIntro}>

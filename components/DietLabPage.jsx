@@ -78,7 +78,7 @@ const DietLabPage = () => {
     },
     {
       q: "What makes this sustainable long-term?",
-      a: "The focus is on building habits that fit naturally into your life, so you don’t have to “restart” again and again.",
+      a: "The focus is on building habits that fit naturally into your life, so you don’t have to “restart” again and again and meals that feel varied, enjoyable, and far from monotonous.",
     },
   ];
 
@@ -105,7 +105,7 @@ const DietLabPage = () => {
         'Check-ins to review progress and adjust the plan',
         'Support with eating out, travel, and social situations',
       ],
-      duration: 'Typically 8–12 weeks, depending on your goals.',
+      duration: 'Typically 12–16 weeks, depending on your goals.',
     },
     {
       id: 'hormonal-health',
@@ -163,7 +163,7 @@ const DietLabPage = () => {
         'Support for weight regain or loss after delivery',
         'Age-appropriate guidelines for infants and children',
       ],
-      duration: 'Typically 8–16 weeks depending on stage and family needs.',
+      duration: 'Typically 12–16 weeks depending on stage and family needs.',
     },
   ];
 
@@ -513,7 +513,16 @@ const DietLabPage = () => {
                       style={{ animationDelay: "0.6s" }}
                     >
                       <span className={styles.chipIcon}>🤰</span>
-                      <span className={styles.chipText}>Pregnancy Nutrition</span>
+                      <span className={styles.chipText}>Pregnancy/Postpartum Nutrition</span>
+                    </div>
+                    <div
+                      className={`${styles.specializationChip} ${
+                        isVisible.hero ? styles.fadeInUp : ""
+                      }`}
+                      style={{ animationDelay: "0.7s" }}
+                    >
+                      <span className={styles.chipIcon}>➕</span>
+                      <span className={styles.chipText}>and more</span>
                     </div>
                   </div>
                 </div>
@@ -723,7 +732,14 @@ const DietLabPage = () => {
                 imageAlt="DietLab nutrition approach overview"
               >
                 <h2>OUR APPROACH</h2>
-                <p>Here’s how DietLab helps you achieve your health goals step by step.</p>
+                <p>
+                  Here’s how DietLab helps you achieve your health goals step by step.
+                </p>
+                <p>
+                  You’ll get guidance that’s practical, personalized to your routine,
+                  and focused on sustainable change so you can stay consistent
+                  without feeling restricted.
+                </p>
               </Step>
 
               <Step
@@ -731,7 +747,14 @@ const DietLabPage = () => {
                 imageAlt="Personal consultation and lifestyle review"
               >
                 <h2>Consultation</h2>
-                <p>We understand your lifestyle, body, and goals before starting.</p>
+                <p>
+                  We understand your lifestyle, body, and goals before starting.
+                </p>
+                <p>
+                  We review your habits, preferences, schedule, and any health
+                  considerations, then set realistic targets and a calm starting
+                  direction you can actually follow.
+                </p>
               </Step>
 
               <Step
@@ -740,6 +763,11 @@ const DietLabPage = () => {
               >
                 <h2>Personalized Plan</h2>
                 <p>A custom nutrition plan designed only for you.</p>
+                <p>
+                  You’ll receive clear meal and portion guidance, simple strategies
+                  for your week, and flexible options that support real life such as travel,
+                  dining out, and busy days included.
+                </p>
               </Step>
 
               <Step
@@ -747,7 +775,15 @@ const DietLabPage = () => {
                 imageAlt="Tracking progress and reviews"
               >
                 <h2>Tracking & Reviews</h2>
-                <p>We track your progress and refine your plan so you stay consistent and on course.</p>
+                <p>
+                  We track your progress and refine your plan so you stay consistent
+                  and on course.
+                </p>
+                <p>
+                  You’ll get check-ins and progress insights, and we’ll adjust
+                  portions, timing, and food choices as you go, aiming for steady
+                  improvements you can maintain long-term.
+                </p>
               </Step>
             </Stepper>
           </div>
@@ -899,12 +935,8 @@ const DietLabPage = () => {
         <div className={`${styles.sectionCard} ${styles.aboutSectionCard}`}>
           <h2 className={styles.sectionTitle}>About Us</h2>
           <p className={styles.sectionText}>
-            We are a team of dedicated nutritionists offering remote
-            consultations to help you achieve your health goals. Our
-            personalized approach ensures that every diet plan is tailored to
-            your unique needs, lifestyle, and preferences. Experience the
-            convenience of online consultations from the comfort of your home,
-            with expert guidance every step of the way.
+          I offer personalized nutrition consultations designed around your lifestyle, preferences, and goals. With a one-on-one approach, you get focused guidance and practical plans that are easy to follow — all from the comfort of your home.I help you build a way of eating that fits your life and not disrupts it. Through one-on-one consultations, we focus on simple, practical changes that feel sustainable and easy to maintain over time.
+          
           </p>
           <Link href="/about" className={styles.aboutSectionCta}>
             Learn more about us

@@ -49,7 +49,7 @@
 
   border: 1px solid rgba(255, 255, 255, 0.4);
 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* subtle */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* subtle */
 }
 
 @keyframes introFadeIn {
@@ -1202,8 +1202,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 18px;
-  color: #1d3352;
+  font-size: 19px;
+  color: #143057;
 }
 
 .programHighlights li::before {
@@ -1226,7 +1226,7 @@
   border: none;
   background-color: #0f172a;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -1281,14 +1281,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #64748b;
+  color: #12325f;
   margin: 0 0 4px 0;
 }
 
 .programExpandedText {
   font-size: 20px;
   font-weight: 400;
-  color: #324a6b;
+  color: #133769;
   margin: 0 0 8px 0;
   line-height: 1.6;
 }
@@ -1296,15 +1296,15 @@
 .programExpandedList {
   margin: 0 0 8px 0;
   padding-left: 18px;
-  font-size: 15px;
-  color: #475569;
+  font-size: 16px;
+  color: #0d3670;
   line-height: 1.6;
 }
 
 .programExpandedNote {
   margin: 8px 0 0 0;
   font-size: 18px;
-  color: #64748b;
+  color: #022351;
 }
 
 .programExpandedPrimaryButton {
@@ -1989,7 +1989,7 @@
 .faqHeading {
   font-size: 40px;
   font-weight: 700;
-  color: #1e293b;
+  color: #213d6a;
   margin: 0 0 12px;
   text-align: center;
   letter-spacing: -0.5px;
@@ -2001,7 +2001,7 @@
   display: block;
   width: 0;
   height: 4px;
-  background-color: #72dae8;
+  background-color: #41a7d2;
   margin: 18px auto 0;
   border-radius: 2px;
   transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2014,7 +2014,7 @@
 .faqIntro {
   margin: 0 0 40px;
   font-size: 18px;
-  color: #64748b;
+  color: #315d9a;
   text-align: center;
   line-height: 1.65;
 }
@@ -2056,7 +2056,7 @@
 .faqQuestionText {
   font-size: 19px;
   font-weight: 600;
-  color: #1e293b;
+  color: #1d4380;
   line-height: 1.45;
   flex: 1;
 }
@@ -2083,9 +2083,9 @@
 
 .faqAnswer p {
   margin: 14px 0 0;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.75;
-  color: #475569;
+  color: #184381;
   font-weight: 400;
 }
 

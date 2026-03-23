@@ -75,8 +75,8 @@ export default function Stepper({
       style: {
         margin: 0,
         marginTop: "8px",
-        fontSize: "19px",
-        color: "#4f6f75",
+        fontSize: "21px",
+        color: "#055E59",
         lineHeight: 1.6,
         textAlign: "left-center",
         ...(node.props?.style || {}),
@@ -275,7 +275,7 @@ export default function Stepper({
               color: "#0f172a",
               cursor: "pointer",
               transition: "transform 0.15s ease, box-shadow 0.15s ease",
-              boxShadow: "0 6px 18px rgba(15, 23, 42, 0.08)",
+              boxShadow: "0 6px 18px rgba(15, 23, 42, 0.4)",
             }}
           >
             {nextButtonText}

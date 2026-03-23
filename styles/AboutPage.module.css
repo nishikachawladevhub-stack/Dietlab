@@ -131,6 +131,11 @@
   margin-bottom: 0;
 }
 
+.degree {
+  margin-bottom: 16px;
+  color: #0d2d72; /* increase if needed */
+}
+
 .imageColumn {
   position: relative;
   min-height: 280px;

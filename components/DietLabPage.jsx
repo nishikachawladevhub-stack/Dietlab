@@ -1,11 +1,19 @@
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/DietLabPage.module.css';
 import ScrollStack from './ScrollStack';
 import { getRecipes } from '../src/lib/sanity';
+import { scheduleCalendlyInlineInit } from '../src/lib/calendlyInline';
 import Stepper, { Step } from "../src/components/ui/stepper";
+
+const HOME_RECIPE_COVER_FALLBACKS = [
+  '/images/recipe.jpg',
+  '/images/meal_plan.jpg',
+  '/images/bowl.jpg',
+];
 
 const DietLabPage = () => {
   const router = useRouter();
@@ -22,6 +30,7 @@ const DietLabPage = () => {
   const calendlySectionRef = useRef(null);
   const calendlyContainerRef = useRef(null);
   const calendlyInitRef = useRef(false);
+  const [calendlyFallback, setCalendlyFallback] = useState(false);
   const [isVisible, setIsVisible] = useState({
     hero: false,
     about: false,
@@ -35,17 +44,6 @@ const DietLabPage = () => {
   });
 
   const CALENDLY_URL = 'https://calendly.com/dietlab-health/30min';
-
-  const initCalendly = useCallback(() => {
-    if (typeof window === 'undefined' || calendlyInitRef.current) return;
-    const el = calendlyContainerRef.current;
-    if (!el || !window.Calendly) return;
-    window.Calendly.initInlineWidget({
-      url: CALENDLY_URL,
-      parentElement: el,
-    });
-    calendlyInitRef.current = true;
-  }, []);
 
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
@@ -275,16 +273,20 @@ const DietLabPage = () => {
     };
   }, []);
 
-  // Calendly: init when script is cached; Script onLoad handles first load
   useEffect(() => {
-    initCalendly();
-    return () => {
-      calendlyInitRef.current = false;
-      if (calendlyContainerRef.current) {
-        calendlyContainerRef.current.innerHTML = '';
-      }
-    };
-  }, [initCalendly]);
+    const cleanup = scheduleCalendlyInlineInit({
+      containerRef: calendlyContainerRef,
+      url: CALENDLY_URL,
+      initRef: calendlyInitRef,
+      onGiveUp: () => {
+        setCalendlyFallback(true);
+        if (calendlyContainerRef.current) {
+          calendlyContainerRef.current.innerHTML = '';
+        }
+      },
+    });
+    return cleanup;
+  }, []);
 
   // Fetch recipes from Sanity (for Recipes section) using shared helper
   useEffect(() => {
@@ -400,8 +402,9 @@ const DietLabPage = () => {
             Recipes
           </button>
           <button
+            type="button"
             className={styles.navItem}
-            onClick={() => scrollToSection(contactRef)}
+            onClick={() => router.push('/contact')}
           >
             Contact
           </button>
@@ -787,13 +790,55 @@ const DietLabPage = () => {
         className={`${styles.servicesSection} ${styles.homeRecipesSection} ${isVisible.recipes ? styles.fadeInUp : ''}`}
       >
         <h1 className={styles.sectionTitle}>Our Recipes</h1>
-        <div className={styles.servicesContainer}>
-          {(recipes.length > 0 ? recipes : fallbackRecipes).map((recipe) => (
-            <div className={styles.serviceCard} key={recipe._id || recipe.id}>
-              <h3 className={styles.serviceCardTitle}>{recipe.title}</h3>
-              <p className={styles.serviceCardText}>{recipe.description}</p>
+        <div className={styles.homeRecipesScrollOuter}>
+          <div
+            className={styles.homeRecipesScroll}
+            tabIndex={0}
+            aria-label="Recipe highlights — scroll horizontally"
+          >
+            {(recipes.length > 0 ? recipes : fallbackRecipes).map(
+              (recipe, index) => {
+                const coverImage =
+                  recipe.imageUrl ||
+                  HOME_RECIPE_COVER_FALLBACKS[
+                    index % HOME_RECIPE_COVER_FALLBACKS.length
+                  ];
+                const href = recipe.slug
+                  ? `/recipes/${recipe.slug}`
+                  : '/recipes';
+                return (
+                  <Link
+                    href={href}
+                    key={recipe._id || recipe.id}
+                    className={styles.homeRecipeScrollCard}
+                  >
+                    <div className={styles.homeRecipeScrollImageWrap}>
+                      <Image
+                        src={coverImage}
+                        alt={recipe.title || 'Recipe'}
+                        fill
+                        sizes="280px"
+                        className={styles.homeRecipeScrollImg}
+                      />
+                    </div>
+                    <div className={styles.homeRecipeScrollBody}>
+                      <h3 className={styles.homeRecipeScrollTitle}>
+                        {recipe.title}
+                      </h3>
+                      <p className={styles.homeRecipeScrollText}>
+                        {recipe.description}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              }
+            )}
           </div>
-          ))}
+        </div>
+        <div className={styles.homeRecipesViewAllWrap}>
+          <Link href="/recipes" className={styles.homeRecipesViewAllBtn}>
+            View All Recipes
+          </Link>
         </div>
       </section>
 
@@ -851,7 +896,7 @@ const DietLabPage = () => {
         ref={aboutRef}
         className={`${styles.aboutSection} ${isVisible.about ? styles.fadeInUp : ''}`}
       >
-        <div className={styles.sectionCard}>
+        <div className={`${styles.sectionCard} ${styles.aboutSectionCard}`}>
           <h2 className={styles.sectionTitle}>About Us</h2>
           <p className={styles.sectionText}>
             We are a team of dedicated nutritionists offering remote
@@ -861,6 +906,9 @@ const DietLabPage = () => {
             convenience of online consultations from the comfort of your home,
             with expert guidance every step of the way.
           </p>
+          <Link href="/about" className={styles.aboutSectionCta}>
+            Learn more about us
+          </Link>
         </div>
       </section>
 
@@ -874,8 +922,7 @@ const DietLabPage = () => {
       >
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
-          onLoad={initCalendly}
+          strategy="afterInteractive"
         />
         <h2 className={styles.calendlyHeading}>Book Your Free Consultation</h2>
         <div className={styles.calendlyCard}>
@@ -883,7 +930,21 @@ const DietLabPage = () => {
             ref={calendlyContainerRef}
             className={styles.calendlyEmbed}
             aria-label="Schedule a meeting on Calendly"
+            style={{ display: calendlyFallback ? 'none' : undefined }}
+            aria-hidden={calendlyFallback}
           />
+          {calendlyFallback && (
+            <div className={styles.calendlyFallback}>
+              <p>Calendar couldn&apos;t load here.</p>
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book on Calendly →
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -1089,14 +1150,14 @@ const DietLabPage = () => {
               <button
                 type="button"
                 className={styles.footerLink}
-                onClick={() => scrollToSection(contactRef)}
+                onClick={() => router.push('/contact')}
               >
                 Contact
               </button>
               <button
                 type="button"
                 className={`${styles.footerLink} ${styles.footerLinkAccent}`}
-                onClick={() => scrollToSection(contactRef)}
+                onClick={() => router.push('/contact#booking')}
               >
                 Book consultation
               </button>

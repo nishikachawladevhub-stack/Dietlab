@@ -60,15 +60,10 @@ const NavbarClient = () => {
         <button
           className={styles.navItem}
           onClick={() => {
-            if (pathname === '/') {
-              const contactSection = document.getElementById('contact-section');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                router.push('/#contact');
-              }
+            if (pathname !== '/contact') {
+              router.push('/contact');
             } else {
-              router.push('/#contact');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >

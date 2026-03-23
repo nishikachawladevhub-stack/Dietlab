@@ -61,16 +61,10 @@ const Navbar = () => {
         <button
           className={styles.navItem}
           onClick={() => {
-            if (router.pathname === '/') {
-              // On home page, scroll to contact section
-              const contactSection = document.getElementById('contact-section');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                router.push('/#contact');
-              }
+            if (router.pathname !== '/contact') {
+              router.push('/contact');
             } else {
-              router.push('/#contact');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >

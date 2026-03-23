@@ -576,6 +576,45 @@
   border: 1px solid rgba(114, 218, 232, 0.1);
 }
 
+/* Home — About Us preview card (soft brand tint + CTA to /about) */
+.aboutSectionCard {
+  text-align: center;
+  background: linear-gradient(
+    165deg,
+    rgba(114, 218, 232, 0.32) 0%,
+    rgba(114, 218, 232, 0.14) 55%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+  border: 1px solid rgba(114, 218, 232, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(114, 218, 232, 0.18);
+}
+
+.aboutSectionCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: #0f172a;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.aboutSectionCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+  background: #1e293b;
+}
+
 .sectionTitle {
   font-size: 32px;
   font-weight: 700;
@@ -1314,6 +1353,124 @@
   margin-bottom: 48px;
 }
 
+/* Home — Our Recipes horizontal scroll (inside same section) */
+.homeRecipesScrollOuter {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.homeRecipesScroll {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.homeRecipesScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.homeRecipeScrollCard {
+  flex: 0 0 auto;
+  min-width: 270px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.homeRecipeScrollCard:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.homeRecipeScrollImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e2e8f0;
+}
+
+.homeRecipeScrollImg {
+  object-fit: cover;
+}
+
+.homeRecipeScrollBody {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.homeRecipeScrollTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.homeRecipeScrollText {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.homeRecipesViewAllWrap {
+  max-width: 1200px;
+  margin: 22px auto 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeRecipesViewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.homeRecipesViewAllBtn:hover {
+  transform: scale(1.04);
+  background: #ffffff;
+  border-color: rgba(114, 218, 232, 0.4);
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(114, 218, 232, 0.15);
+}
+
 .servicesContainer {
   max-width: 1200px;
   margin: 0 auto;
@@ -1770,7 +1927,7 @@
 }
 
 .calendlyCard {
-  background: #3c6fc1;
+  background: #9ac0ff;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -1783,6 +1940,25 @@
   width: 100%;
   min-height: 650px;
   height: 650px;
+}
+
+.calendlyFallback {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 15px;
+  color: #1e3a5f;
+}
+
+.calendlyFallback a {
+  color: #20498b;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 @media (max-width: 640px) {

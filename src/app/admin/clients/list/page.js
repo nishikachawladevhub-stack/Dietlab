@@ -43,42 +43,47 @@ export default async function ClientListPage() {
       </header>
 
       <div className={styles.clientsTableWrapper}>
-        {clients.length === 0 ? (
-          <div className={styles.clientsEmpty}>
-            <div className={styles.clientsEmptyTitle}>No clients yet</div>
-            <div className={styles.clientsEmptyText}>
-              Add a client from the Admin dashboard.
+        <div className={styles.clientsTablePanel}>
+          {clients.length === 0 ? (
+            <div className={styles.clientsEmpty}>
+              <div className={styles.clientsEmptyTitle}>No clients yet</div>
+              <div className={styles.clientsEmptyText}>
+                Add clients via Admin → Add Client (Sanity Studio) and publish.
+                They appear in this table on refresh.
+              </div>
             </div>
-          </div>
-        ) : (
-          <>
-            <div className={styles.clientsTableHead}>
-              <div className={styles.clientsTh}>Name</div>
-              <div className={styles.clientsTh}>Email</div>
-              <div className={styles.clientsTh}>Phone</div>
-              <div className={styles.clientsTh}>Goal</div>
-              <div className={styles.clientsTh}>Start Date</div>
-              <div className={styles.clientsTh}>Notes</div>
-            </div>
+          ) : (
+            <div className={styles.clientsTableScroll}>
+              <div className={styles.clientsTableHead}>
+                <div className={styles.clientsTh}>Name</div>
+                <div className={styles.clientsTh}>Email</div>
+                <div className={styles.clientsTh}>Phone</div>
+                <div className={styles.clientsTh}>Goal</div>
+                <div className={styles.clientsTh}>Start Date</div>
+                <div className={styles.clientsTh}>Notes</div>
+              </div>
 
-            <div className={styles.clientsTableBody}>
-              {clients.map((c) => (
-                <div key={c._id} className={styles.clientsTr}>
-                  <div className={`${styles.clientsTd} ${styles.clientsTdName}`}>
-                    {c.name || "—"}
+              <div className={styles.clientsTableBody}>
+                {clients.map((c) => (
+                  <div key={c._id} className={styles.clientsTr}>
+                    <div
+                      className={`${styles.clientsTd} ${styles.clientsTdName}`}
+                    >
+                      {c.name || "—"}
+                    </div>
+                    <div className={styles.clientsTd}>{c.email || "—"}</div>
+                    <div className={styles.clientsTd}>{c.phone || "—"}</div>
+                    <div className={styles.clientsTd}>{c.goal || "—"}</div>
+                    <div className={styles.clientsTd}>
+                      {c.startDate || "—"}
+                    </div>
+                    <div className={styles.clientsTd}>{c.notes || "—"}</div>
                   </div>
-                  <div className={styles.clientsTd}>{c.email || "—"}</div>
-                  <div className={styles.clientsTd}>{c.phone || "—"}</div>
-                  <div className={styles.clientsTd}>{c.goal || "—"}</div>
-                  <div className={styles.clientsTd}>
-                    {c.startDate || "—"}
-                  </div>
-                  <div className={styles.clientsTd}>{c.notes || "—"}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </main>
   );

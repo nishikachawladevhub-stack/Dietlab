@@ -2,9 +2,16 @@
 
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  background: rgba(160, 238, 229, 0.3);
   padding-bottom: 80px;
   overflow-x: hidden;
+}
+
+/* Single main wrapper — allows full-width sections between constrained blocks */
+.aboutMain {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .main {
@@ -19,6 +26,7 @@
   transform: translateY(16px);
   transition: opacity 0.85s ease, transform 0.85s ease;
   margin-top: 90px;
+  margin-bottom: -200px; 
 }
 
 .heroVisible {
@@ -174,12 +182,25 @@
 }
 
 /* The Story of DietLab — two columns, neutral, scroll fade */
-.storySection {
-  margin-top: clamp(56px, 7vw, 96px);
+/* .storySection {
+  margin: clamp(24px, 3vw, 40px) auto;
   padding: clamp(40px, 5vw, 64px) clamp(20px, 3vw, 32px);
   background:  rgba(167, 239, 230, 0.4);
   border-radius: 28px;
   border: 1px solid rgba(15, 23, 42, 0.06);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+} */
+
+.storySection { 
+  margin: 24px auto; /* reduced */
+  padding: clamp(32px, 4vw, 56px) clamp(20px, 3vw, 32px);
+
+  background: rgba(167, 239, 230, 0.4);
+  border-radius: 28px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -268,6 +289,153 @@
   }
 
   .storyLogoCard {
+    margin: 0 auto;
+  }
+}
+
+/* From the Blog — full-bleed band (section is 100% viewport width) */
+.blogSection {
+  width: 100%;
+  max-width: none;
+  margin: clamp(48px, 6vw, 96px) 0 0;
+  padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 48px);
+  box-sizing: border-box;
+
+  background: #f2e0bd;
+  border: none;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 0;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.blogVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blogInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 48px);
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.blogTextCol {
+  text-align: left;
+}
+
+.blogHeading {
+  margin: 0 0 16px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.blogIntro {
+  margin: 0 0 14px;
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.78;
+  color: #475569;
+  font-weight: 400;
+}
+
+.blogTextCol .blogIntro:last-of-type {
+  margin-bottom: 22px;
+}
+
+.blogCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.blogCta:hover {
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.blogCardWrap {
+  min-width: 0;
+}
+
+.blogCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fafbfc;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.07);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.blogCard:hover {
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+.blogCardImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e2e8f0;
+}
+
+.blogCardImg {
+  object-fit: cover;
+}
+
+.blogCardBody {
+  padding: 20px 22px 22px;
+}
+
+.blogCardTitle {
+  margin: 0 0 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #0f172a;
+}
+
+.blogCardExcerpt {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .blogInner {
+    grid-template-columns: 1fr;
+  }
+
+  .blogCard {
+    max-width: 420px;
     margin: 0 auto;
   }
 }

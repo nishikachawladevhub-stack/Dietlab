@@ -1,3 +1,48 @@
+/* Auth loading — full viewport, no admin content until session OK */
+.adminAuthLoading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-size: 1rem;
+  color: #374151;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(214, 227, 223, 0.35),
+      rgba(215, 250, 250, 0.35)
+    ),
+    url("/images/fruit.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.adminLogoutBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #111827;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.adminLogoutBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+}
+
 .adminContainer {
   min-height: 100vh;
   padding: 80px 20px;
@@ -8,7 +53,7 @@
       rgba(214, 227, 223, 0.35),
       rgba(215, 250, 250, 0.35)
     ),
-    url("/images/admin_bg.jpg");
+    url("/images/fruit.jpeg");
 
   background-size: cover;
   background-position: center;
@@ -95,11 +140,27 @@
   flex-direction: column;
 }
 
-/* Clients Table Layout (column-based) */
+/* Clients table — outer + solid panel so rows sit on readable surface */
 .clientsTableWrapper {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 8px;
+}
+
+.clientsTablePanel {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  padding: 24px 24px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.clientsTableScroll {
+  min-width: 720px;
 }
 
 .clientsTableHead {
@@ -134,6 +195,11 @@
   align-items: start;
 }
 
+.clientsTr:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
 .clientsTd {
   font-size: 24px;
   font-weight: 300;
@@ -151,7 +217,8 @@
 }
 
 .clientsEmpty {
-  padding: 18px 0;
+  padding: 32px 16px;
+  text-align: center;
 }
 
 .clientsEmptyTitle {

@@ -1,0 +1,257 @@
+/* Contact page — calm wellness-style layout */
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding-bottom: 80px;
+}
+
+.shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+.pageTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.85rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: #0f172a;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  margin: 0 0 40px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #64748b;
+  max-width: 520px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(32px, 4vw, 48px);
+  align-items: start;
+}
+
+.leftCol {
+  min-width: 0;
+}
+
+/* Left: form */
+.formCard {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 22px;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(114, 218, 232, 0.15);
+}
+
+.formTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0 0 20px;
+  letter-spacing: 0.02em;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 14px;
+  padding: 12px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: rgba(114, 218, 232, 0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(114, 218, 232, 0.12);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submitBtn {
+  margin-top: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #5ec4d4 0%, #72dae8 100%);
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(114, 218, 232, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(114, 218, 232, 0.4);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.successMsg {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(114, 218, 232, 0.12);
+  color: #0f766e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Right: connect */
+.sideCard {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 22px;
+  padding: clamp(24px, 4vw, 32px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.04);
+}
+
+.sideHeading {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #0f172a;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+
+.sideText {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.sideText:last-of-type {
+  margin-bottom: 0;
+}
+
+.emailLink {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0e7490;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(14, 116, 144, 0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.emailLink:hover {
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+.reassurance {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* Calendly — primary booking block */
+.bookingSection {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-top: clamp(40px, 5vw, 56px);
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.bookingHeading {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  color: #0f172a;
+  margin: 0 0 8px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.bookingLine {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.bookingCard {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(114, 218, 232, 0.2);
+}
+
+.calendlyEmbed {
+  width: 100%;
+  min-height: 650px;
+  height: 650px;
+}
+
+.calendlyFallback {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 15px;
+  color: #64748b;
+}
+
+.calendlyFallback a {
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .calendlyEmbed {
+    min-height: 560px;
+    height: min(620px, 85vh);
+  }
+}
+
+@media (max-width: 900px) {
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}

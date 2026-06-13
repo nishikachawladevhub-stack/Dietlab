@@ -147,7 +147,7 @@ export default function Stepper({
           margin-left: -10px;
           margin-right: 120px;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .stepperContentRow {
             flex-direction: column;
             align-items: stretch;
@@ -155,9 +155,13 @@ export default function Stepper({
           }
           .stepperTextCol {
             text-align: left;
+            padding-left: 0;
+            padding-right: 0;
           }
           .stepperImageCol {
             align-self: center;
+            margin-left: 0;
+            margin-right: 0;
           }
         }
       `}</style>
@@ -268,7 +272,8 @@ export default function Stepper({
             type="button"
             onClick={goNext}
             style={{
-              padding: "10px 18px",
+              padding: "12px 20px",
+              minHeight: "44px",
               borderRadius: "12px",
               border: "1px solid rgba(99, 210, 225, 0.3)",
               background: "#ffffff",

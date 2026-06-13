@@ -139,11 +139,13 @@ export default function ContactPage() {
               clarity — never a one-size-fits-all script.
             </p>
             <a
-              href="mailto:hello@dietlab.example"
-              className={styles.emailLink}
-            >
-              hello@dietlab.example
-            </a>
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=dietlab.health@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={styles.emailLink}
+>
+  dietlab.health@gmail.com
+</a>
             <p className={styles.reassurance}>
               We usually reply within 1–2 business days. No spam — just thoughtful
               support when you need it.

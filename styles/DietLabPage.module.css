@@ -3,6 +3,8 @@
   min-height: 100vh;
   background-color: #ffffff;
   position: relative;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .introSection {
@@ -50,6 +52,10 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
 
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* subtle */
+}
+
+.stepperWrapper {
+  margin: 120px 0;
 }
 
 @keyframes introFadeIn {
@@ -1005,16 +1011,18 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .whySection {
-    min-height: 80vh;
-    padding-top: 7rem;
-    padding-bottom: 8rem;
+    min-height: auto;
+    padding: 4rem 16px 5rem;
     margin-bottom: 4rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   .whyContainer {
-    padding: 0 0.5rem;
+    padding: 0;
+    max-width: 100%;
   }
 
   .whyHeading {
@@ -1025,27 +1033,83 @@
     font-size: clamp(1.05rem, 4.6vw, 1.25rem);
   }
 
-  .whyChipsLeft {
+  .whyImageWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2rem;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .whyImageBox {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    line-height: 0;
+    flex-shrink: 0;
+  }
+
+  .whyImageBox > span {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: hidden;
+  }
+
+  .whyImageBox .whyImage,
+  .whyImageBox img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .whyImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .whyChipsLeft,
+  .whyChipsRight {
     position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
     transform: none;
     width: 100%;
-    max-width: 520px;
+    max-width: 100%;
+    display: grid;
     grid-template-columns: 1fr;
     row-gap: 12px;
-    margin: 1.5rem auto 0;
+    margin: 0;
+    z-index: auto;
+  }
+
+  .whyChipsLeft {
+    margin-top: 1.5rem;
   }
 
   .whyChipsRight {
-    display: none;
+    margin-top: 12px;
   }
 
   .whyChip {
+    width: 100%;
+    box-sizing: border-box;
     padding: 13px 18px;
     font-size: 0.96rem;
-  }
-
-  .whyImageWrap {
-    margin-top: 3rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }
 
@@ -1927,7 +1991,7 @@
 }
 
 .calendlyCard {
-  background: #9ac0ff;
+  background: #20498b;;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -2133,6 +2197,29 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .introSection {
+    padding: 24px 16px;
+    margin-bottom: 48px;
+  }
+
+  .stepperSection {
+    margin: 48px 16px;
+    padding: 24px 16px;
+  }
+
+  .stepperWrapper {
+    margin: 48px 0;
+  }
+
+  .bookBtn {
+    bottom: 16px;
+    right: 16px;
+    padding: 16px 20px;
+    font-size: 15px;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+  }
+
   .navbar {
     flex-direction: column;
     gap: 12px;
@@ -2147,6 +2234,13 @@
 
   .navbarBrand {
     gap: 0;
+    max-width: 100%;
+  }
+
+  .navbarLogo {
+    max-width: min(280px, 78vw);
+    height: auto;
+    max-height: 56px;
   }
 
   .navbarLogoIcon {
@@ -2198,6 +2292,10 @@
   .heroTopSection {
     flex-direction: column;
     gap: 24px;
+  }
+
+  .heroContentWrapper {
+    min-height: auto;
   }
 
   .heroImageWrapper {
@@ -2272,10 +2370,16 @@
   }
 
   .bentoSection {
-    padding: 80px 20px;
+    padding: 80px 16px;
     min-height: auto;
     background-image: url('/images/bgh.png');
     background-position: center center;
+  }
+
+  .bentoContainer {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
   }
 
   .bentoHeading {
@@ -2286,21 +2390,16 @@
   }
 
   .bentoGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 20px;
     max-width: 100%;
   }
 
-  .bentoChipLarge {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    padding: 28px;
-  }
-
+  .bentoChipLarge,
   .bentoChipMedium,
   .bentoChipSmall {
-    grid-column: auto;
+    grid-column: 1;
     grid-row: auto;
   }
 
@@ -2310,25 +2409,37 @@
   .bentoChip:nth-child(5),
   .bentoChip:nth-child(6),
   .bentoChip:nth-child(7) {
-    grid-column: auto;
+    grid-column: 1;
     grid-row: auto;
   }
 
-  @media (max-width: 480px) {
-    .bentoSection {
-      padding: 60px 16px;
-    }
+  .programsSection {
+    padding: 60px 16px 72px;
+  }
 
-    .bentoGrid {
-      grid-template-columns: 1fr;
-    }
+  .recipesPage {
+    padding: 60px 16px 96px;
+  }
 
-    .bentoChipLarge,
-    .bentoChipMedium,
-    .bentoChipSmall {
-      grid-column: 1;
-      grid-row: auto;
-    }
+  .recipesLayout {
+    gap: 32px;
+  }
+
+  .recipesFilterSelect,
+  .recipesFilterSearch {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .primaryButton,
+  .programButton,
+  .faqCtaButton,
+  .aboutSectionCta {
+    min-height: 44px;
+  }
+
+  .bentoChipLarge {
+    padding: 28px;
   }
 
   .aboutSection,
@@ -2466,6 +2577,18 @@
 
   .serviceCard {
     padding: 24px 20px;
+  }
+
+  .homeRecipesScrollOuter {
+    padding: 0 4px;
+  }
+
+  .calendlyCard {
+    padding: 12px;
+  }
+
+  .faqQuestionBtn {
+    min-height: 44px;
   }
 
 }

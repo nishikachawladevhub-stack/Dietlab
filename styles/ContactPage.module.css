@@ -4,6 +4,8 @@
   min-height: 100vh;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   padding-bottom: 80px;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .shell {
@@ -211,7 +213,7 @@
 .bookingCard {
   max-width: 720px;
   margin: 0 auto;
-  background: #ffffff;
+  background: #95ecf4;
   border-radius: 20px;
   padding: 16px;
   box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
@@ -243,15 +245,45 @@
   text-decoration: underline;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .shell {
+    padding: 32px 16px 48px;
+  }
+
+  .twoCol {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .textarea {
+    min-height: 120px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    min-height: 44px;
+    padding: 14px 24px;
+  }
+
+  .bookingCard {
+    padding: 12px;
+  }
+
   .calendlyEmbed {
     min-height: 560px;
     height: min(620px, 85vh);
   }
 }
 
-@media (max-width: 900px) {
-  .twoCol {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .calendlyEmbed {
+    min-height: 560px;
+    height: min(620px, 85vh);
   }
 }

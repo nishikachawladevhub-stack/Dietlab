@@ -63,9 +63,10 @@
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
-  font-size: 1rem;
+  font-size: 16px;
   color: #111827;
   background: #fff;
+  min-height: 44px;
 }
 
 .inputPassword {
@@ -130,6 +131,7 @@
 .submit {
   margin-top: 8px;
   padding: 12px 16px;
+  min-height: 44px;
   border: none;
   border-radius: 999px;
   background: #20498b;

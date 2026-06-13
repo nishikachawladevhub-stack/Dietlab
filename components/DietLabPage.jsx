@@ -711,8 +711,8 @@ const DietLabPage = () => {
       </section>
 
       {/* Tip: Our Approach (Stepper) */}
-      <div className="stepperSection">
-        <div style={{ margin: "120px 0" }}>
+      <div className={styles.stepperSection}>
+        <div className={styles.stepperWrapper}>
           <div data-stepper-name={name}>
             <Stepper
               initialStep={1}
@@ -888,13 +888,16 @@ const DietLabPage = () => {
         </div>
 
         <div ref={whyImageWrapRef} className={styles.whyImageWrap}>
-          <Image
-            src="/images/bghello.png"
-            alt="Weekly planner laptop"
-            width={1400}
-            height={900}
-            className={styles.whyImage}
-          />
+          <div className={styles.whyImageBox}>
+            <Image
+              src="/images/bghello.png"
+              alt="Weekly planner laptop"
+              width={1400}
+              height={900}
+              className={styles.whyImage}
+              sizes="(max-width: 767px) 100vw, 1200px"
+            />
+          </div>
           <div className={styles.whyChipsLeft}>
             <div className={`${styles.whyChip} ${isVisible.why ? styles.whyChipInView : ''}`}>
               Personalized Plans for Your Lifestyle
